@@ -1,8 +1,13 @@
 song = "";
+scoreLeftWrist = 0;
 leftWristX = 0;
 leftWristy = 0;
 rightWristX = 0;
 rightWristy = 0;
+
+function preload() {
+    song = loadSound("music.mp3");
+}
 
 function setup() {
     canvas = createCanvas(600, 500);
@@ -13,6 +18,10 @@ function setup() {
 
     poseNet = ml5.poseNet(video, modelLoaded);
     poseNet.on('pose', gotPoses);
+}
+
+function modelLoaded() {
+    console.log("posenet has started");
 }
 
 function gotPoses(results) {
@@ -33,9 +42,7 @@ function gotPoses(results) {
 
 
 
-function modelLoaded() {
-    console.log("posenet has started");
-}
+
 
 function draw() {
     image(video, 0, 0, 600, 500);
@@ -53,9 +60,9 @@ function draw() {
     }
 }
 
-function preload() {
-    song = loadSound("music.mp3");
-}
+
+
+
 
 function play() {
     song.play();
